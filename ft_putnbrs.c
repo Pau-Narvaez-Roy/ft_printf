@@ -6,13 +6,13 @@
 /*   By: pnarvaez <pnarvaez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 10:17:01 by pnarvaez          #+#    #+#             */
-/*   Updated: 2026/06/16 12:00:52 by pnarvaez         ###   ########.fr       */
+/*   Updated: 2026/06/22 14:18:56 by pnarvaez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putnbr_long_base(long nb)
+static int	ft_putnbr_long_base_rec(unsigned long nb)
 {
 	char	*base;
 	int		count;
@@ -20,12 +20,31 @@ int	ft_putnbr_long_base(long nb)
 	base = "0123456789abcdef";
 	count = 0;
 	if (nb >= 16)
-		count += ft_putnbr_long_base(nb / 16);
+		count += ft_putnbr_long_base_rec(nb / 16);
 	write(1, &base[nb % 16], 1);
 	count++;
 	return (count);
 }
 
+int	ft_putnbr_long_base(void *nb)
+{
+	int				count;
+	unsigned long	nbr;
+
+	if (!nb)
+	{
+		write(1, "(nil)", 5);
+		count = 5;
+	}
+	else
+	{
+		write(1, "0x", 2);
+		count = 2;
+		nbr = (unsigned long) nb;
+		count += ft_putnbr_long_base_rec((unsigned long) nbr);
+	}
+	return (count);
+}
 
 int	ft_putnbr_base(unsigned int nb, int pos)
 {
