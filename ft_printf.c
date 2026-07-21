@@ -6,7 +6,7 @@
 /*   By: pnarvaez <pnarvaez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 08:23:12 by pnarvaez          #+#    #+#             */
-/*   Updated: 2026/07/21 15:36:31 by pnarvaez         ###   ########.fr       */
+/*   Updated: 2026/07/21 17:28:55 by pnarvaez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,13 @@ static int	ft_print_vargs(char const *format, va_list vargs)
 		count_printed += ft_putnbr_base(va_arg(vargs, unsigned int), 1);
 	else if (*format == '%')
 		count_printed += ft_putchar('%');
-	/*else
-		count_printed--;*/
 	return (count_printed);
 }
 
 int	ft_choose_format(char const *format, va_list vargs)
 {
-	int				count_printed;
-	int				temp;
+	int	count_printed;
+	int	temp;
 
 	count_printed = 0;
 	while (*format)
