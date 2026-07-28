@@ -103,7 +103,6 @@ This will generate the `libftprintf.a` library file.
 
 ```c
 #include "ft_printf.h"
-#include <stdio.h>
 
 int	main(void)
 {
@@ -134,7 +133,6 @@ int	main(void)
 - [man 3 printf](https://man7.org/linux/man-pages/man3/printf.3.html) - Standard printf documentation
 - [man 3 stdarg](https://man7.org/linux/man-pages/man3/stdarg.3.html) - Variadic function macros
 - [man 2 write](https://man7.org/linux/man-pages/man2/write.2.html) - System call for output
-- [C Standard Library Reference](https://en.cppreference.com/w/c/io/fprintf) - Format string specifications
 
 ### AI Usage
 
@@ -176,4 +174,4 @@ This project is part of the 42 school curriculum.
 
 ---
 
-**Last Updated**: July 16, 2026
+**Last Updated**: July 28, 2026
