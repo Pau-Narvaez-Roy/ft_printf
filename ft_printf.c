@@ -6,7 +6,7 @@
 /*   By: pnarvaez <pnarvaez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 08:23:12 by pnarvaez          #+#    #+#             */
-/*   Updated: 2026/07/26 18:38:26 by pnarvaez         ###   ########.fr       */
+/*   Updated: 2026/07/31 09:41:51 by pnarvaez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,10 @@ int	ft_choose_format(char const *format, va_list vargs)
 	while (*format)
 	{
 		temp = count_printed;
-		if (*format == '%' && *(format + 1))
+		if (*format == '%')
 		{
+			if (*(format + 1) == '\0')
+				return (-1);
 			count_printed += ft_print_vargs(format + 1, vargs);
 			if (count_printed == temp)
 				count_printed += ft_putchar((char) *format);
@@ -68,6 +70,8 @@ int	ft_printf(char const *format, ...)
 	int			count_printed;
 
 	if (!format)
+		return (-1);
+	if (write(1, "", 1) < 0)
 		return (-1);
 	va_start(vargs, format);
 	count_printed = ft_choose_format(format, vargs);
