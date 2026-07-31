@@ -6,7 +6,7 @@
 /*   By: pnarvaez <pnarvaez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 10:17:01 by pnarvaez          #+#    #+#             */
-/*   Updated: 2026/06/22 14:18:56 by pnarvaez         ###   ########.fr       */
+/*   Updated: 2026/07/31 14:19:29 by pnarvaez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ static int	ft_putnbr_long_base_rec(unsigned long nb)
 	count = 0;
 	if (nb >= 16)
 		count += ft_putnbr_long_base_rec(nb / 16);
-	write(1, &base[nb % 16], 1);
-	count++;
+	count += ft_putchar(base[nb % 16]);
 	return (count);
 }
 
@@ -48,18 +47,15 @@ int	ft_putnbr_long_base(void *nb)
 
 int	ft_putnbr_base(unsigned int nb, int pos)
 {
-	char	**base;
+	char	*base[2];
 	int		count;
 
-	base = (char **) malloc(sizeof(char *) * 3);
 	base[0] = "0123456789abcdef";
 	base[1] = "0123456789ABCDEF";
 	count = 0;
 	if (nb >= 16)
 		count += ft_putnbr_base(nb / 16, pos);
-	write(1, &base[pos][nb % 16], 1);
-	free(base);
-	count++;
+	count += ft_putchar(base[pos][nb % 16]);
 	return (count);
 }
 
@@ -73,8 +69,7 @@ int	ft_putnbr_unsigned(unsigned int n)
 		count += ft_putnbr(n / 10);
 	res = n % 10;
 	res = res + '0';
-	write(1, &res, 1);
-	count++;
+	count += ft_putchar(res);
 	return (count);
 }
 
@@ -85,10 +80,7 @@ int	ft_putnbr(int n)
 
 	count = 0;
 	if (n == -2147483648)
-	{
-		write(1, "-2147483648", 11);
-		return (11);
-	}
+		return (ft_putstr("-2147483648"));
 	if (n < 0)
 	{
 		write(1, "-", 1);
