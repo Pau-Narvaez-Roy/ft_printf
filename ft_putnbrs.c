@@ -6,7 +6,7 @@
 /*   By: pnarvaez <pnarvaez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 10:17:01 by pnarvaez          #+#    #+#             */
-/*   Updated: 2026/07/31 14:19:29 by pnarvaez         ###   ########.fr       */
+/*   Updated: 2026/07/31 14:32:47 by pnarvaez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,11 @@ static int	ft_putnbr_long_base_rec(unsigned long nb)
 int	ft_putnbr_long_base(void *nb)
 {
 	int				count;
-	unsigned long	nbr;
 
 	if (!nb)
-	{
-		write(1, "(nil)", 5);
-		count = 5;
-	}
-	else
-	{
-		write(1, "0x", 2);
-		count = 2;
-		nbr = (unsigned long) nb;
-		count += ft_putnbr_long_base_rec((unsigned long) nbr);
-	}
+		return (ft_putstr("(nil)"));
+	count = ft_putstr("0x");
+	count += ft_putnbr_long_base_rec((unsigned long) nb);
 	return (count);
 }
 
