@@ -6,7 +6,7 @@
 /*   By: pnarvaez <pnarvaez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 10:17:01 by pnarvaez          #+#    #+#             */
-/*   Updated: 2026/07/31 14:32:47 by pnarvaez         ###   ########.fr       */
+/*   Updated: 2026/08/05 12:59:34 by pnarvaez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	ft_putnbr_unsigned(unsigned int n)
 
 	count = 0;
 	if (n >= 10)
-		count += ft_putnbr(n / 10);
+		count += ft_putnbr_unsigned(n / 10);
 	res = n % 10;
 	res = res + '0';
 	count += ft_putchar(res);
@@ -66,7 +66,6 @@ int	ft_putnbr_unsigned(unsigned int n)
 
 int	ft_putnbr(int n)
 {
-	int	res;
 	int	count;
 
 	count = 0;
@@ -74,15 +73,9 @@ int	ft_putnbr(int n)
 		return (ft_putstr("-2147483648"));
 	if (n < 0)
 	{
-		write(1, "-", 1);
+		count += ft_putchar('-');
 		n = -n;
-		count++;
 	}
-	if (n >= 10)
-		count += ft_putnbr(n / 10);
-	res = n % 10;
-	res = res + '0';
-	write(1, &res, 1);
-	count++;
+	count += ft_putnbr_unsigned(n);
 	return (count);
 }
